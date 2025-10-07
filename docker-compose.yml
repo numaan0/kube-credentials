@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  # Issuance Service - Issues credentials
+  issuance-service:
+    build:
+      context: ./issuance-service
+      dockerfile: Dockerfile
+    ports:
+      - "3001-3005:3001"  # Port range for scaling
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./data:/app/data  # Shared database storage
+    restart: unless-stopped
+
+  # Verification Service - Verifies credentials  
+  verification-service:
+    build:
+      context: ./verification-service
+      dockerfile: Dockerfile
+    ports:
+      - "3006-3010:3002"
+    environment:
+      - NODE_ENV=production
+      - ISSUANCE_SERVICE_URL=http://issuance-service:3001
+    depends_on:
+      - issuance-service
+    restart: unless-stopped
