@@ -8,8 +8,9 @@ export class IssuanceDatabase {
   private getAsync: (sql: string, params?: any[]) => Promise<any>;
 
   constructor(dbPath?: string) {
-    const defaultPath = path.join(__dirname, '../../data/issuance.db');
-    const finalPath = dbPath || defaultPath;
+    // const defaultPath = path.join(__dirname, '../../data/issuance.db');
+    const defaultPath = this.getDbPath();
+    const finalPath = defaultPath;
     
     console.log(`📁 Database path: ${finalPath}`);
     
@@ -25,6 +26,21 @@ export class IssuanceDatabase {
     this.getAsync = promisify(this.db.get.bind(this.db));
     
     this.initializeDatabase();
+  }
+
+  private getDbPath(): string {
+    // Check if running in Docker (EC2)
+    if (process.env.DATABASE_PATH) {
+      return process.env.DATABASE_PATH;
+    }
+    
+    // Auto-detect Docker environment
+    if (process.env.NODE_ENV === 'production') {
+      return '/app/data/issuance.db';  // EC2/Docker path
+    }
+    
+    // Local development path
+    return path.join(__dirname, '../../data/issuance.db');
   }
 
   private initializeDatabase(): void {
