@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(cors());
 
 // Health check
-app.get('/health', (req, res) => {
+app.get('/health_verify', (req, res) => {
   res.json({ 
     status: 'healthy', 
     service: 'verification', 

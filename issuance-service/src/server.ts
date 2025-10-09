@@ -18,7 +18,7 @@ async function checkCredentialExists(credentialHash: string) {
     return existingCredential; 
 }
 
-app.get('/health', (req, res) => {
+app.get('/health_issue', (req, res) => {
     res.json({ message: 'Issuance Service is running!' });
 });
 

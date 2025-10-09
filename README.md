@@ -86,7 +86,7 @@ docker-compose logs -f
 #### Health Check
 ```
 
-GET /health
+GET /health_issue
 
 ```
 **Response:**
@@ -185,8 +185,8 @@ npm run test:coverage
 
 # Health checks
 
-curl http://localhost:3001/health
-curl http://localhost:3002/health
+curl http://localhost:3001/health_issue
+curl http://localhost:3002/health_verify
 
 # Issue credential
 
