@@ -28,13 +28,17 @@ services:
       - issuance-service
     restart: unless-stopped
 
-  nginx:
-    image: nginx:alpine
+  nginx-proxy-manager:
+    image: 'jc21/nginx-proxy-manager:latest'
     ports:
-      - "80:80"   # single stable entrypoint
+      - '80:80'
+      - '443:443'
+      - '81:81'
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-    depends_on:
-      - issuance-service
-      - verification-service
+      - npm-data:/data
+      - npm-letsencrypt:/etc/letsencrypt
+    restart: unless-stopped
 
+volumes:
+  npm-data:
+  npm-letsencrypt:
