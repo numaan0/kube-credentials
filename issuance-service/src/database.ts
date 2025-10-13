@@ -26,6 +26,12 @@ export class IssuanceDatabase {
     this.getAsync = promisify(this.db.get.bind(this.db));
     
     this.initializeDatabase();
+
+    // Memory optimizations
+    this.db.run('PRAGMA cache_size = -2000');  // Limit cache to 2MB
+    this.db.run('PRAGMA temp_store = MEMORY');
+    this.db.run('PRAGMA mmap_size = 0');  // Disable memory mapping
+    this.db.run('PRAGMA journal_mode = WAL');
   }
 
   private getDbPath(): string {

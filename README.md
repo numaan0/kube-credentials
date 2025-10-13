@@ -1,4 +1,3 @@
-
 ```flowchart
 # 🔐 Kube Credentials - Backend Services
 
@@ -158,12 +157,6 @@ Content-Type: application/json
 "issuedAt": "2025-10-08T23:30:00.000Z"
 }
 
-```
-
-## 🧪 Testing
-
-### Run Tests
-```
 
 # Test all services
 
@@ -174,19 +167,6 @@ npm run test:all
 cd issuance-service \&\& npm test
 cd verification-service \&\& npm test
 
-# Coverage reports
-
-npm run test:coverage
-
-```
-
-### Manual API Testing
-```
-
-# Health checks
-
-curl http://localhost:3001/health_issue
-curl http://localhost:3002/health_verify
 
 # Issue credential
 

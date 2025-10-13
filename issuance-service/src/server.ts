@@ -88,4 +88,31 @@ app.listen(PORT, () => {
 });
 
 
+// Graceful shutdown handlers
+process.on('SIGTERM', () => {
+  console.log('🛑 SIGTERM received, closing database...');
+  db.close();
+  process.exit(0);
+});
+
+process.on('SIGINT', () => {
+  console.log('🛑 SIGINT received, closing database...');
+  db.close();
+  process.exit(0);
+});
+
+process.on('uncaughtException', (error) => {
+  console.error('❌ Uncaught Exception:', error);
+  db.close();
+  process.exit(1);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('❌ Unhandled Rejection at:', promise, 'reason:', reason);
+  db.close();
+  process.exit(1);
+});
+
+
+
 
