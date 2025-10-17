@@ -22,8 +22,6 @@ RUN npm install --only=production
 
 # Copy compiled JS from builder
 COPY --from=builder /app/dist ./dist
-# Copy database folder if needed
-COPY --from=builder /app/data ./data
 
 # Expose port
 EXPOSE 3001

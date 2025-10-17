@@ -9,7 +9,7 @@ services:
       - "3001"
     environment:
       - NODE_ENV=production
-      - NODE_OPTIONS=--max-old-space-size=384
+      - NODE_OPTIONS=--max-old-space-size=256
     mem_limit: 380m
     mem_reservation: 192m
     cpus: 0.5
@@ -26,7 +26,7 @@ services:
     environment:
       - NODE_ENV=production
       - ISSUANCE_SERVICE_URL=http://issuance-service:3001
-      - NODE_OPTIONS=--max-old-space-size=384
+      - NODE_OPTIONS=--max-old-space-size=256
     mem_limit: 380m
     mem_reservation: 192m
     cpus: 0.5
