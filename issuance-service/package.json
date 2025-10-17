@@ -5,10 +5,10 @@
   "description": "Credential Issuance Microservice",
   "main": "dist/server.js",
   "scripts": {
-  "dev": "ts-node src/server.ts",
-  "build": "tsc",
-  "start": "node dist/server.js"
-},
+    "dev": "ts-node src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
+  },
   "keywords": [],
   "author": "numan",
   "license": "ISC",
@@ -19,6 +19,7 @@
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
     "@types/node": "^24.7.0",
     "@types/sqlite3": "^3.1.11",
