@@ -30,6 +30,8 @@ services:
     mem_limit: 380m
     mem_reservation: 192m
     cpus: 0.5
+    volumes:
+      - ./data:/app/data
     depends_on:
       - issuance-service
     restart: unless-stopped
